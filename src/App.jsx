@@ -4,13 +4,10 @@ import { Keyboard } from "./components/Keyboard";
 import { getRandomWords } from "./helpers/words";
 export const App = () => {
   const [ifLose, setIfLose] = useState(false);
-  const [attempts, setAttempts] = useState(getRandomWords());
+  const [words, setWords] = useState(getRandomWords());
+  const [attempts, setAttempts] = useState(0);
   const [hideWord, setHideWord] = useState("_ ".repeat(words.length));
   const hideWordArray = hideWord.split(" ");
-
-  const restartGame = () => {
-    const newWord = getRandomWords();
-  };
 
   useEffect(() => {
     if (attempts === 9) {
@@ -23,8 +20,11 @@ export const App = () => {
       setIfLose(true);
     }
   }, []);
+  const restartGame = () => {
+    const newWord = getRandomWords();
+  };
 
-  const areWordsExisting = (letter) => {
+  const validateWords = (letter) => {
     if (!words.includes(letter)) {
       setAttempts(Math.min(attempts + 1, 9));
       return;
@@ -48,7 +48,7 @@ export const App = () => {
         {ifLose ? <h3>Game over 🎲</h3> : <h3> You won </h3>}
 
         <h4>Attempts : {attempts} </h4>
-        <Keyboard setAttempts={areWordsExisting} />
+        <Keyboard setAttempts={validateWords(words)} />
         {getRandomWords}
       </div>
     </>
