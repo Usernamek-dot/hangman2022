@@ -1,4 +1,4 @@
-export const letters: string[] = [
+export const writerKeys = [
   "A",
   "B",
   "C",

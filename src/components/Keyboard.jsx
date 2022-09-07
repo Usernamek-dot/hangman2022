@@ -1,21 +1,22 @@
-import { letters } from "../helpers/letters";
-export const Keyboard = ({ setAttempts }) => {
+import { useState } from "react";
+import { writerKeys } from "../helpers/writerKeys";
+export const Keyboard = ({ counter, setCounter }) => {
+  // const [counter, setCounter] = useState(0);
+
+  const validateWords = (writerKey) => {
+    setCounter(counter + 1);
+  };
   return (
     <>
-      {letters.map((letter) => (
+      {writerKeys.map((writerKey) => (
         <button
-          onClick={() => {
-            setAttempts(letter);
-          }}
-          className="bg-white p-4 rounded-full shadow-md m-2"
-          key={letter}
+          key={writerKey}
+          onClick={() => validateWords(writerKey)}
+          className=" hover:bg-gray-900 bg-gray-700 text-gray-100 p-4 rounded-full shadow-md m-2"
         >
-          {letter}
+          {writerKey}
         </button>
       ))}
-      <button className="mt-6 bg-blue-700 py-4 px-6 rounded-full text-white font-bold text-xl">
-        Again ? 🕖
-      </button>
     </>
   );
 };

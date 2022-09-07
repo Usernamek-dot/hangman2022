@@ -1,56 +1,38 @@
-import { useEffect, useState } from "react";
-import { HangmanImgs } from "./components/HangmanImgs";
+import { useState } from "react";
+import { Images } from "./components/Images";
 import { Keyboard } from "./components/Keyboard";
-import { getRandomWords } from "./helpers/words";
+
 export const App = () => {
-  const [ifLose, setIfLose] = useState(false);
-  const [words, setWords] = useState(getRandomWords());
-  const [attempts, setAttempts] = useState(0);
-  const [hideWord, setHideWord] = useState("_ ".repeat(words.length));
-  const hideWordArray = hideWord.split(" ");
-
-  useEffect(() => {
-    if (attempts === 9) {
-      setIfLose(true);
-    }
-  }, []);
-  useEffect(() => {
-    const currentHidingWord = hideWord.split(" ").join(" ");
-    if (currentHidingWord === words) {
-      setIfLose(true);
-    }
-  }, []);
-  const restartGame = () => {
-    const newWord = getRandomWords();
-  };
-
-  const validateWords = (letter) => {
-    if (!words.includes(letter)) {
-      setAttempts(Math.min(attempts + 1, 9));
-      return;
-    }
-  };
-  for (let i = 0; i < words.length; i++) {
-    if (words[i] === letter) {
-      hideWordArray[i] = letter;
-    }
-  }
-  setHideWord(hideWordArray.join(" "));
+  const [counter, setCounter] = useState(0);
 
   return (
     <>
-      <div className="text-center">
-        <div className="mx-auto flex flex-col justify-center items-center">
-          <HangmanImgs imgNum={attempts} />
+      <div className="flex justify-center">
+        <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
+          Attepmts #
+        </h5>
+        <div className="bg-gray-500 text-gray-900 block p-6 rounded-lg shadow-lg max-w-sm">
+          <Images imgIndex={counter} />
+
+          <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
+            _ _ _ _ _ _ _ _ _ _ _ _
+          </h5>
+
+          <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
+            GAME OVER
+          </h5>
+          <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
+            NICE TRY!
+          </h5>
         </div>
-        <h3 className="font-bold text-4xl my-4 text-blue-600">{hideWord}</h3>
-
-        {ifLose ? <h3>Game over 🎲</h3> : <h3> You won </h3>}
-
-        <h4>Attempts : {attempts} </h4>
-        <Keyboard setAttempts={validateWords(words)} />
-        {getRandomWords}
       </div>
+      <Keyboard counter={counter} setCounter={setCounter} />
+      <button
+        type="button"
+        className="inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out"
+      >
+        Play again
+      </button>
     </>
   );
 };
