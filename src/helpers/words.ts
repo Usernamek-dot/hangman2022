@@ -1,4 +1,4 @@
-let words: string[] = [
+let words = [
   "GOODNESS",
   "SINCERITY",
   "EMPATHY",
@@ -10,3 +10,8 @@ let words: string[] = [
   "RESPONSIBILITY",
   "SOLIDARITY",
 ];
+
+export const getRandomWords = () => {
+  const randomIndex = Math.floor(Math.random() * words.length);
+  return words[randomIndex];
+};
