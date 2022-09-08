@@ -49,7 +49,7 @@ export const Keyboard = ({
         <button
           key={writerKey}
           onClick={() => validateWords(writerKey)}
-          className=" hover:bg-gray-900 bg-gray-700 text-gray-100 p-2 rounded-full shadow-md m-2"
+          className="max-w-sm  hover:bg-gray-900 bg-gray-700 text-gray-100 p-2 rounded-full shadow-md m-2"
         >
           {writerKey}
         </button>

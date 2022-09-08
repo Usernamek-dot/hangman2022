@@ -11,14 +11,18 @@ import img9 from "../assets/9.png";
 
 const imgArray = [img0, img1, img2, img3, img4, img5, img6, img7, img8, img9];
 
-export const Images = ({ imgIndex }) => {
+export const Images = ({ hideWord, imgIndex }) => {
   if (imgIndex >= 9) {
     imgIndex = 9;
   }
   return (
-    <img
-      className="p-1 bg-slate-300 border rounded h-23"
-      src={imgArray[imgIndex]}
-    />
+    <div class="flex justify-center ">
+      <div class="rounded-lg shadow-lg bg-gray-800  max-w-sm">
+        <img className="h-60 w-96 rounded-t-lg" src={imgArray[imgIndex]} />
+        <div class="p-6">
+          <h5 class="text-stone-500 text-xl font-medium mb-2">{hideWord}</h5>
+        </div>
+      </div>
+    </div>
   );
 };

@@ -24,48 +24,57 @@ export const App = () => {
     <>
       <Navbar counter={counter} />
 
-      <div className="flex justify-around">
-        <div className="bg-gray-500 text-gray-100 block p-6 rounded-lg shadow-lg max-w-sm">
-          <Images imgIndex={counter} />
-
-          <h5 className="text-gray-100 text-xl leading-tight font-medium mb-2">
-            {hideWord}
-          </h5>
+      <div className="p-4 flex justify-between">
+        <div className="flex-auto w-64">
+          <Images hideWord={hideWord} imgIndex={counter} />
+        </div>
+        <div className="flex-auto w-32">
+          <Keyboard
+            setWonGame={setWonGame}
+            setLostGame={setLostGame}
+            lostGame={lostGame}
+            wonGame={wonGame}
+            hideWord={hideWord}
+            setHideWord={setHideWord}
+            words={words}
+            counter={counter}
+            setCounter={setCounter}
+          />
+          <button
+            onClick={() => resetGame()}
+            type="button"
+            className="inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out"
+          >
+            Play again
+          </button>
         </div>
       </div>
       {lostGame ? (
-        <h5 className="text-gray-100 text-xl leading-tight font-medium mb-2">
-          GAME OVER! the hidden word is <strong> {words}</strong>
-        </h5>
+        <div className=" m-5">
+          <div
+            className=" py-5 px-6  mb-3 bg-stone-900 text-indigo-700  rounded-lg text-base  inline-flex items-center w-full "
+            role="alert"
+          >
+            GAME OVER!
+            <span className="font-bold text-indigo-800 m-1"> {words} </span> Was
+            the hidden word.
+          </div>
+        </div>
       ) : (
         ""
       )}
       {wonGame ? (
-        <h5 className="text-gray-100 text-xl leading-tight font-medium mb-2">
-          NICE TRY!
-        </h5>
+        <div className=" m-5">
+          <div
+            className=" py-5 px-6  mb-3 bg-stone-900 text-indigo-700  rounded-lg text-base  inline-flex items-center w-full "
+            role="alert"
+          >
+            Good job! 🙋
+          </div>
+        </div>
       ) : (
         ""
       )}
-
-      <Keyboard
-        setWonGame={setWonGame}
-        setLostGame={setLostGame}
-        lostGame={lostGame}
-        wonGame={wonGame}
-        hideWord={hideWord}
-        setHideWord={setHideWord}
-        words={words}
-        counter={counter}
-        setCounter={setCounter}
-      />
-      <button
-        onClick={() => resetGame()}
-        type="button"
-        className="inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out"
-      >
-        Play again
-      </button>
     </>
   );
 };
