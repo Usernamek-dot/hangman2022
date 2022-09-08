@@ -17,7 +17,7 @@ export const Images = ({ imgIndex }) => {
   }
   return (
     <img
-      className="p-1 bg-slate-300 border rounded h-20"
+      className="p-1 bg-slate-300 border rounded h-23"
       src={imgArray[imgIndex]}
     />
   );
