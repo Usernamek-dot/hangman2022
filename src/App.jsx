@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Images } from "./components/Images";
 import { Keyboard } from "./components/Keyboard";
+import { Navbar } from "./components/Navbar";
 import { getRandomWords } from "./helpers/words";
 
 export const App = () => {
@@ -21,9 +22,8 @@ export const App = () => {
 
   return (
     <>
-      <h5 className="text-gray-100 text-xl leading-tight font-medium mb-2">
-        Attepmts {counter}
-      </h5>
+      <Navbar counter={counter} />
+
       <div className="flex justify-around">
         <div className="bg-gray-500 text-gray-100 block p-6 rounded-lg shadow-lg max-w-sm">
           <Images imgIndex={counter} />
